@@ -1,6 +1,6 @@
 # Ethos Vision — Cinematic Studio Website
 
-**Live:** https://uzzicodes.github.io/ethos-vision-website/
+**Live:** https://ethosvisionstudio.com
 
 A luxury, 3D portfolio website for **Ethos Vision**, a studio producing cinematic showcase videos for FiveM script and MLO developers.
 
