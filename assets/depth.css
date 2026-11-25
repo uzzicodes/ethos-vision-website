@@ -1,0 +1,127 @@
+/* Ethos Vision / depth layer. The real-time lens hero, refined type and 3D film cards. Loaded last. */
+@font-face{font-family:'Archivo';src:url('./fonts/archivo-var.woff2') format('woff2');font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+@font-face{font-family:'Cormorant';src:url('./fonts/cormorant-500-italic.woff2') format('woff2');font-weight:500;font-style:italic;font-display:swap}
+:root{--sans:'Archivo',Arial,Helvetica,sans-serif;--display-serif:'Cormorant',Georgia,serif}
+html body{font-family:var(--sans);font-optical-sizing:auto}
+html .serif{font-family:var(--display-serif);font-weight:500;letter-spacing:-.025em}
+html h1,html h2{font-stretch:92%;font-weight:380}
+html .eyebrow,html .brand-word,html .film-client,html .film-type,html .hero-footer,html .lens-readout{font-stretch:118%}
+
+/* Hero: a pinned stage. The lens canvas fills it; copy sits on the left. */
+html .hero{padding-top:0;overflow:visible;background:none;height:auto}
+html .hero:before,html .hero:after{display:none}
+html body{overflow-x:clip}
+html.lens-ready.lens-motion .hero{height:250vh;height:250svh}
+.hero-stage{position:relative;top:0;height:100vh;height:100svh;min-height:600px;overflow:hidden;display:flex;isolation:isolate}
+html.lens-ready.lens-motion .hero-stage{position:sticky}
+.hero-gpu{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;opacity:0;transition:opacity 1.2s var(--ease)}
+html.lens-ready .hero-gpu{opacity:1}
+html .hero .sculpture-wrap{position:absolute;z-index:0;right:4%;top:50%;width:min(46vw,640px);max-height:none;aspect-ratio:1;transform:translateY(-46%);animation:none;pointer-events:none}
+html .hero .sculpture{width:100%;transform:none}
+html .hero .emblem{position:relative;inset:auto;width:100%;height:auto;transform:none;filter:drop-shadow(0 30px 40px #000a)}
+html.lens-ready .hero .sculpture-wrap{display:none}
+.hero-layer{position:relative;z-index:2;flex:1;display:grid;grid-template-rows:1fr auto;padding-top:118px;pointer-events:none}
+.hero-layer>*{pointer-events:auto}
+html .hero-copy{align-self:center;max-width:560px;padding-bottom:0;animation:none;opacity:var(--lens-copy,1)!important;translate:none!important;transform:translate3d(0,calc((1 - var(--lens-copy,1)) * -48px),0);will-change:opacity,transform}
+html .hero-copy>.eyebrow{text-transform:none;letter-spacing:.02em;font-size:13px;color:#c8b6dc;margin-bottom:22px}
+html .hero h1{font-size:clamp(64px,7.4vw,122px);line-height:.92;letter-spacing:-.055em;font-stretch:88%;font-weight:420}
+html .hero h1 .serif{font-size:1.12em;line-height:.9;margin-top:.02em;letter-spacing:-.03em;font-stretch:100%}
+html .hero-copy>.copy{max-width:400px;font-size:15px;line-height:1.75;color:#bfb6ca;margin-top:30px}
+html .hero-actions{margin-top:34px}
+html .hero-actions .text-link{background:none;border:0;color:inherit;cursor:pointer}
+html .hero-footer{border-top:1px solid rgb(255 255 255 / calc(var(--lens-copy,1) * .08));display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:30px;padding-block:24px}
+html .hero-footer p{font-size:11px;letter-spacing:.02em}
+html .hero-footer .scroll-link{justify-self:end;text-transform:none;letter-spacing:.04em;font-size:12px}
+.hero-footer>p,.hero-footer>.scroll-link{opacity:var(--lens-copy,1)}
+.lens-readout{display:flex;align-items:baseline;gap:14px;color:#9f92b0;font-size:11px;letter-spacing:.04em}
+.lens-readout b{font-weight:500;font-size:20px;letter-spacing:-.01em;color:#eadcff;font-variant-numeric:tabular-nums;min-width:4.2ch;font-stretch:100%}
+html:not(.lens-motion) .lens-readout span{visibility:hidden}
+
+@media(max-width:1180px){html .hero h1{font-size:clamp(56px,7.4vw,90px)}html .hero-copy{max-width:470px}}
+@media(max-width:900px){.hero-layer{padding-top:100px}html .hero-footer{grid-template-columns:1fr auto}html .hero-footer p{display:none}}
+@media(max-width:760px),(max-aspect-ratio:1/1){
+  .hero-layer{padding-top:96px;grid-template-rows:auto 1fr auto}
+  html .hero-copy{align-self:start;max-width:520px}
+  html .hero-footer{grid-row:3;align-self:end}
+  html .hero .sculpture-wrap{right:50%;top:auto;bottom:90px;width:min(78vw,460px);transform:translateX(50%)}
+}
+@media(max-width:650px){
+  .hero-stage{min-height:620px}
+  .hero-layer{padding-top:88px}
+  html .hero-copy>.eyebrow{font-size:12px;margin-bottom:16px}
+  html .hero h1{font-size:clamp(46px,13.5vw,70px)}
+  html .hero-copy>.copy{font-size:13px;margin-top:18px;max-width:330px}
+  html .hero-actions{margin-top:22px}
+  html .hero-footer{padding-block:16px}
+  .lens-readout span{display:none}
+  .lens-readout b{font-size:16px}
+}
+@media(max-height:700px) and (min-width:761px){html .hero-copy>.copy{display:none}}
+
+/* Selected work: a calm 12-column rhythm. Cards lift toward the cursor with a moving highlight. */
+@media(min-width:901px){
+  html .work-grid[data-view=all]{gap:28px 24px;align-items:stretch}
+  html .work-grid[data-view=all] .film{margin-top:0!important}
+  html .work-grid[data-view=all] .film:nth-child(2),html .work-grid[data-view=all] .film:nth-child(5),html .work-grid[data-view=all] .film:nth-child(6){grid-column:span 7}
+  html .work-grid[data-view=all] .film:nth-child(3),html .work-grid[data-view=all] .film:nth-child(4),html .work-grid[data-view=all] .film:nth-child(7){grid-column:span 5}
+  html .work-grid[data-view=all] .film:nth-child(n+2):not(:last-child) .film-button{height:100%;display:flex;flex-direction:column}
+  html .work-grid[data-view=all] .film:nth-child(n+2):not(:last-child) .film-media{flex:1;min-height:0}
+}
+html .film-button{transform-style:preserve-3d}
+html .film-media{transition:transform .5s var(--ease)}
+html .film.is-tracking .film-media{transform:translateZ(22px)}
+html .film:before{background:radial-gradient(circle at var(--gx,30%) var(--gy,20%),#e3c6ff26,transparent 45%)}
+html .film-play{transition:transform .5s var(--ease),background .3s,border-color .3s}
+html .partner-card{transition:transform .5s var(--ease),border-color .3s}
+html .partner-card:hover{transform:translateY(-4px)}
+.motion-off .film-media{transform:none!important}
+html:not(.lens-ready) .lens-readout{visibility:hidden}
+
+/* Story atmosphere: one fixed haze layer behind the whole page. Sections become transparent so the light reads through. */
+.atmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;contain:strict;animation:atmos-in 1.6s var(--ease) both}
+@keyframes atmos-in{from{opacity:0}}
+html.atmosphere-ready main,html.atmosphere-ready .footer{position:relative;z-index:1}
+.atmos__light{position:absolute;inset:0;opacity:0}
+.atmos__light:not(.is-live){visibility:hidden}
+.atmos__light.is-live{will-change:opacity}
+.atmos__light[data-scene="0"]{background:radial-gradient(ellipse 55% 62% at 74% 50%,#7a3cff38,transparent 70%),radial-gradient(ellipse 40% 30% at 96% 0%,#c04dff1f,transparent 70%)}
+.atmos__light[data-scene="1"]{background:radial-gradient(ellipse 55% 40% at 50% 104%,#7a3cff21,transparent 70%)}
+.atmos__light[data-scene="2"]{background:radial-gradient(ellipse 48% 62% at 4% 30%,#4f5dff29,transparent 70%),radial-gradient(ellipse 40% 50% at 100% 92%,#9b4dff1f,transparent 70%)}
+.atmos__light[data-scene="3"]{background:radial-gradient(ellipse 62% 42% at 50% -6%,#d9c8ff1f,transparent 70%)}
+.atmos__light[data-scene="4"]{background:radial-gradient(ellipse 45% 55% at 2% 96%,#ffb46b24,transparent 70%),radial-gradient(ellipse 45% 55% at 95% 28%,#8a3cff24,transparent 70%)}
+.atmos__light[data-scene="5"]{background:radial-gradient(ellipse 50% 52% at 24% 8%,#b07bff26,transparent 70%),radial-gradient(ellipse 35% 45% at 98% 82%,#ff9fd817,transparent 70%)}
+.atmos__light[data-scene="6"]{background:radial-gradient(ellipse 72% 46% at 50% 110%,#ff7ab838,transparent 70%),radial-gradient(ellipse 48% 30% at 50% 114%,#ffb46b33,transparent 70%)}
+.atmos__beam{position:absolute;left:18vw;right:18vw;top:-4vh;height:108vh;opacity:0;filter:blur(26px);will-change:opacity}
+.atmos__beam:before{content:'';position:absolute;inset:0;clip-path:polygon(45.5% 0,54.5% 0,96% 100%,4% 100%);background:linear-gradient(#d4bdff52,#b993ff1c 45%,#7a3cff08 80%,transparent)}
+.atmos__haze{position:absolute;left:-30vw;top:-30vh;width:160vw;height:160vh;background:url('./haze-a.webp') center/cover no-repeat;opacity:.06;animation:haze-a 80s ease-in-out infinite alternate;will-change:transform}
+.atmos__haze--b{background-image:url('./haze-b.webp');opacity:.045;animation-name:haze-b;animation-duration:110s}
+@keyframes haze-a{to{transform:translate3d(12vw,-7vh,0) scale(1.08)}}
+@keyframes haze-b{from{transform:translate3d(8vw,4vh,0) scale(1.1)}to{transform:translate3d(-10vw,-3vh,0)}}
+.motion-off .atmos__haze{animation:none}
+@media(prefers-reduced-motion:reduce){.atmos__haze,.atmos{animation:none}}
+html.atmosphere-ready body{background:#050507}
+html.atmosphere-ready .services{background:linear-gradient(180deg,#08060d66,#0c071100)}
+html.atmosphere-ready .partner-band{background:none}
+html.atmosphere-ready .motion-tape{background:#0d0913b3}
+html.atmosphere-ready .contact{background:radial-gradient(ellipse at 50% 120%,#a242ec22,transparent 60%),#0d091480}
+html.atmosphere-ready .process-step{background:linear-gradient(135deg,#1a1022cc,#0d0912b3)}
+
+/* Scene marker: where you are in the shoot, with a running timecode. Desktop only, after the hero. */
+.scene-marker{position:fixed;z-index:40;left:max(22px,calc((100vw - var(--max,1440px)) / 2 + 22px));bottom:22px;display:none;align-items:baseline;gap:12px;font-size:11px;letter-spacing:.03em;color:#a596b8;pointer-events:none;font-variant-numeric:tabular-nums;opacity:0;transform:translateY(6px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.scene-marker__name{color:#efe6ff;font-size:13px;font-family:var(--display-serif);font-style:italic;font-weight:500;letter-spacing:0}
+.scene-marker__tc{color:#7f7192;min-width:11ch}
+@media(min-width:1024px){.scene-marker{display:flex}}
+.scene-marker.is-in:not([data-scene="0"]){opacity:1;transform:none}
+.scene-marker.is-in .scene-marker__name{animation:scene-name .7s var(--ease) both}
+.scene-marker__name,.scene-marker__scene{white-space:nowrap}
+@keyframes scene-name{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:blur(0)}}
+.motion-off .scene-marker .scene-marker__name{animation:none}
+::selection{color:#fff;background:#7532b8}
+html{scrollbar-color:#3a2a4f #050507}
+
+/* Legibility floor: small labels stay small and refined, but never below 11px on any screen. */
+html body :is(.sound-label,.motion-label,.eyebrow,.eyebrow .index,.reel-stage-top .status,.reel-stage-top span,.reel-play small,.reel-stage-bottom span,.film-number,.film-type,.film-client,.partner-caption,.partner-network span,.service-art-caption span,.studio-note .n,.step-number,.step-caption,.contact-foot .status,.footer-bottom span,.footer-bottom a,.cinema-foot span,.cinema-foot a){font-size:11px;line-height:1.45}
+html body .filter-count{font-size:10px}
+html body :is(.hero-actions .button,.hero-actions .text-link,.work-head-side .text-link,.work-end .text-link,.filters .filter,.film-play,.cinema-close){font-size:max(12px,1em)}
+html body .play-small{font-size:10px}
+@media(max-width:650px){html body .brand-word small{display:none}html body :is(.hero-actions .button,.hero-actions .text-link,.filters .filter,.reel-stage-bottom p){font-size:12px}}
